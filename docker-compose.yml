@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+
+  rib_nginx:
+    container_name: "rib_nginx"
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./.docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/rib/
+      - ./.docker/logs/nginx:/var/log/nginx/
+
+  rib_php82:
+    container_name: "rib_php82"
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: "./.docker/php/Dockerfile"
+    volumes:
+      - ./:/var/www/rib/
+    networks:
+      - internal
+
+  rib_mariadb:
+    container_name: "rib_mariadb"
+    image: mariadb:11.0.2
+    volumes:
+      - ./.docker/database/${DB_DATABASE}:/var/lib/mysql/${DB_DATABASE}
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_USER: ${DB_USERNAME}
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

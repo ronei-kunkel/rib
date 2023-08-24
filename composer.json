@@ -1,0 +1,35 @@
+{
+    "name": "ronei-kunkel/rib",
+    "type": "project",
+    "description": "Rib é um template para criação de projetos utilizando php 8.2 e nginx em um ambiente completamente dockerizado",
+    "require-dev": {
+        "pestphp/pest": "^1.23"
+    },
+    "authors": [
+        {
+            "name": "Ronei Kunkel",
+            "email": "ronei.kunkel@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rib\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "bash": "docker exec -it $(docker ps -q -f name=rib_php82) bash",
+        "tests": "docker container exec -it $(docker ps -q -f name=rib_php82) sh -c \"php vendor/bin/pest\" -d",
+        "setup": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "composer update",
+            "composer dump-autoload",
+            "docker-compose build",
+            "docker-compose up -d"
+        ]
+    }
+}
