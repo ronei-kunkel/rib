@@ -41,25 +41,24 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
 
-RUN docker-php-ext-enable opcache
-RUN docker-php-ext-configure gd
-
-RUN docker-php-ext-install -j$(nproc) \
-  opcache \
-  gd \
-  gmp \
-  pdo_mysql \
-  mbstring \
-  pdo \
-  exif \
-  sockets \
-  sodium \
-  apcu \
-  bz2 \
-  intl \
-  pcntl \
-  bcmath \
-  zip
+RUN docker-php-ext-enable opcache \
+  && docker-php-ext-configure gd \
+  && docker-php-ext-install -j$(nproc) \
+  && docker-php-ext-install opcache \
+  && docker-php-ext-install gd \
+  && docker-php-ext-install gmp \
+  && docker-php-ext-install pdo_mysql \
+  && docker-php-ext-install mbstring \
+  && docker-php-ext-install pdo \
+  && docker-php-ext-install exif \
+  && docker-php-ext-install sockets \
+  && docker-php-ext-install sodium \
+  && docker-php-ext-install apcu \
+  && docker-php-ext-install bz2 \
+  && docker-php-ext-install intl \
+  && docker-php-ext-install pcntl \
+  && docker-php-ext-install bcmath \
+  && docker-php-ext-install zip
 
 # Copy files
 COPY . /var/www/rib
