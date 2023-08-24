@@ -38,6 +38,7 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     libgmp-dev \
     libsodium-dev \
+    libpcre3-dev \
   && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
