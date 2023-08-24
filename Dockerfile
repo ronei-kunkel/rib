@@ -54,7 +54,6 @@ RUN docker-php-ext-install opcache \
   && docker-php-ext-install exif \
   && docker-php-ext-install sockets \
   && docker-php-ext-install sodium \
-  && docker-php-ext-install apcu \
   && docker-php-ext-install bz2 \
   && docker-php-ext-install intl \
   && docker-php-ext-install pcntl \
