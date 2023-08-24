@@ -64,7 +64,7 @@ RUN docker-php-ext-install -j$(nproc) \
 # Copy files
 COPY . /var/www/rib
 
-COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
+COPY ./.docker/prod.ini /usr/local/etc/php/local.ini
 
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
 
