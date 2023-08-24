@@ -39,6 +39,7 @@ RUN apt-get update \
     libsodium-dev \
     libpcre3-dev \
     libbz2-dev \
+    libicu-dev \
   && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
@@ -54,6 +55,7 @@ RUN docker-php-ext-install pdo
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install sodium
+# RUN docker-php-ext-install apcu
 RUN docker-php-ext-install bz2
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install pcntl
