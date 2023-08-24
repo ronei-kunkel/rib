@@ -43,7 +43,6 @@ RUN apt-get update \
 
 RUN docker-php-ext-enable opcache \
   && docker-php-ext-configure gd \
-  && docker-php-ext-install -j$(nproc) \
   && docker-php-ext-install opcache \
   && docker-php-ext-install gd \
   && docker-php-ext-install gmp \
