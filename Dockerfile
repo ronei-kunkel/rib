@@ -44,9 +44,13 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
 
-RUN docker-php-ext-enable opcache
+# comentários para deploy no render.com
+
+# RUN docker-php-ext-enable opcache
+# RUN docker-php-ext-install opcache
+# RUN docker-php-ext-install apcu
+
 RUN docker-php-ext-configure gd
-RUN docker-php-ext-install opcache
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install gmp
 RUN docker-php-ext-install pdo_mysql
@@ -55,7 +59,6 @@ RUN docker-php-ext-install pdo
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install sodium
-# RUN docker-php-ext-install apcu
 RUN docker-php-ext-install bz2
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install pcntl
