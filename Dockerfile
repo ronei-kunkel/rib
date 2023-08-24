@@ -45,7 +45,7 @@ RUN docker-php-ext-enable opcache
 RUN docker-php-ext-configure gd
 
 RUN docker-php-ext-install -j$(nproc) \
-	opcache \
+  opcache \
   gd \
   gmp \
   pdo_mysql \
