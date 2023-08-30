@@ -44,8 +44,6 @@ RUN apt-get update \
     libpcre3-dev \
     libbz2-dev \
     libicu-dev \
-    redis-server \
-    redis \
   && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
@@ -55,6 +53,8 @@ RUN apt-get update \
 # RUN docker-php-ext-enable opcache
 # RUN docker-php-ext-install opcache
 # RUN docker-php-ext-install apcu
+
+RUN pecl install redis
 
 RUN docker-php-ext-configure gd
 RUN docker-php-ext-install gd
@@ -70,7 +70,6 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install zip
-RUN docker-php-ext-configure redis
 RUN docker-php-ext-install redis
 
 # Copy files
