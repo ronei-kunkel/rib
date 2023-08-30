@@ -45,6 +45,7 @@ RUN apt-get update \
     libbz2-dev \
     libicu-dev \
     redis-server \
+    redis \
   && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
@@ -75,7 +76,7 @@ RUN docker-php-ext-install redis
 COPY . /var/www/rib
 COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
-COPY ./.docker/redis/ /usr/local/etc/redis/redis.conf/
+# COPY ./.docker/redis/ /usr/local/etc/redis/redis.conf/
 
 # RUN chmod +rwx /var/www/rib
 
