@@ -1,5 +1,3 @@
 <?php declare(strict_types=1);
 
-require __DIR__.'/../vendor/autoload.php';
-
-exit('rib');
+require_once __DIR__ . '/../bootstrap/app.php';

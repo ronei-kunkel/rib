@@ -1,4 +1,9 @@
+.idea
+.vscode
+psalm.xml
+phpunit.xml
 vendor
 .env
+.phpunit.result.cache
 teste-render
 teste-render.pub
