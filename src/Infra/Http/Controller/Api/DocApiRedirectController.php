@@ -2,20 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Rib\Http\Action;
+namespace Controller\Api;
 
-use HttpSoft\Response\HtmlResponse;
+use HttpSoft\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class HomeAction implements RequestHandlerInterface
+final class DocApiRedirectController implements RequestHandlerInterface
 {
+    public function __construct(){
+    }
+
     /**
      * {@inheritDoc}
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new HtmlResponse('<h1>/</h1>');
+        return new RedirectResponse(uri: '/doc/api', code: 301, reasonPhrase: 'Redirect');
     }
 }

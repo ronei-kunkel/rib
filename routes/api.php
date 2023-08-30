@@ -7,11 +7,17 @@
  */
 
 use HttpSoft\Router\RouteCollector;
-use Rib\Http\Action\Post\ListAction;
-use Rib\Http\Action\Post\ViewAction;
+use Controller\Api\DocApiRedirectController;
 
-$route->group('/v1', static function (RouteCollector $router) {
-  $router->get('api.v1', '/?', ListAction::class);
-  $router->get('api.v1.resource', '/{id}', ViewAction::class)->tokens(['id' => '\d+']);
+// redirect to doc
+$route->get('/api', '/?', DocApiRedirectController::class);
+
+// api v1
+$route->group('/v1', function (RouteCollector $router) {
+
+  // redirect to doc
+  $router->get('/api/v1', '/?', DocApiRedirectController::class);
+
+  // $router->get('api.v1.resource', '/{id}', ViewAction::class)->tokens(['id' => '\d+']);
 });
 

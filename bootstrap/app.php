@@ -12,8 +12,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use HttpSoft\Basis\Application;
 use HttpSoft\ServerRequest\ServerRequestCreator;
 use Devanych\Di\Container;
+use Dotenv\Dotenv;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
+$dotenv = Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
 $appConfig['config'] = require_once __DIR__ . '/../config/app.php';

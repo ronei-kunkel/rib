@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rib\Infrastructure;
+namespace Factory;
 
 use Devanych\Di\FactoryInterface;
 use Exception;

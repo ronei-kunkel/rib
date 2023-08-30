@@ -5,9 +5,9 @@
  * @see https://httpsoft.org/docs/app/v1/dependency-injection
  */
 
-use Rib\Infrastructure\Http\ApplicationFactory;
-use Rib\Infrastructure\Http\ErrorHandlerMiddlewareFactory;
-use Rib\Infrastructure\LoggerFactory;
+use Factory\ApplicationFactory;
+use Factory\ErrorHandlerMiddlewareFactory;
+use Factory\LoggerFactory;
 use HttpSoft\Basis\Application;
 use HttpSoft\Basis\Response\CustomResponseFactory;
 use HttpSoft\Cookie\CookieManager;

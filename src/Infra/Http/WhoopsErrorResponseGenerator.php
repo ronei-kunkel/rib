@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rib\Infrastructure\Http;
+namespace Http;
 
 use HttpSoft\Basis\Response\ExtractErrorDataTrait;
 use HttpSoft\ErrorHandler\ErrorResponseGeneratorInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rib\Model\Post;
+namespace Repository;
 
 use DateTimeImmutable;
 

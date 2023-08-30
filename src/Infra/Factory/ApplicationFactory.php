@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rib\Infrastructure\Http;
+namespace Factory;
 
 use Devanych\Di\FactoryInterface;
 use HttpSoft\Basis\Application;

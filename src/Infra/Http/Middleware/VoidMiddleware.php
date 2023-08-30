@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rib\Infra\Http\Middleware;
+namespace Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

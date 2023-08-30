@@ -48,7 +48,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Rib\\": "src/"
+            "Rib\\": "src/",
+            "Module\\": "src/Application/Module/",
+            "Infra\\": "src/Infra/",
+            "Factory\\": "src/Infra/Factory/",
+            "Repository\\": "src/Infra/Reposifory/",
+            "Controller\\": "src/Infra/Http/Controller/",
+            "Middleware\\": "src/Infra/Http/Middleware/"
         }
     },
     "autoload-dev": {

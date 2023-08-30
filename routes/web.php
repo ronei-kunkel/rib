@@ -6,13 +6,14 @@
  * @see HttpSoft\Router\RouteCollector
  */
 
-use HttpSoft\Router\RouteCollector;
-use Rib\Http\Action\Post\ListAction;
-use Rib\Http\Action\Post\ViewAction;
+use Controller\Web\HomeAction;
+use Controller\Web\Doc\DocApiController;
 
-$route->get('/', '/?', Rib\Http\Action\HomeAction::class);
+$route->get('/', '', HomeAction::class);
 
-$route->group('/user', static function (RouteCollector $router) {
-  $router->get('user.list', '', ListAction::class);
-  $router->get('user.view', '/{id}', ViewAction::class)->tokens(['id' => '\d+']);
-});
+$route->get('/doc/api', '/doc/api', DocApiController::class);
+
+// $route->group('/user', function (RouteCollector $router) {
+//   $router->get('user.list', '', ListAction::class);
+//   $router->get('user.view', '/{id}', ViewAction::class)->tokens(['id' => '\d+']);
+// });

@@ -5,7 +5,7 @@
  * @see https://httpsoft.org/docs/runner/v1/middleware-pipeline
  */
 
-use Rib\Infra\Http\Middleware\VoidMiddleware;
+use Middleware\VoidMiddleware;
 
 // Pipe here any custom middleware that you want to execute on every request or for specific paths.
 
