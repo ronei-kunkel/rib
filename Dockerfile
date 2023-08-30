@@ -67,16 +67,16 @@ RUN docker-php-ext-install zip
 
 # Copy files
 COPY . /var/www/rib
-
 COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
-
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
 
 # RUN chmod +rwx /var/www/rib
 
 # RUN chmod -R 777 /var/www/rib
 
-RUN chgrp -R www-data storage && chgrp -R www-data bootstrap/cache
+# RUN chgrp -R www-data storage && chgrp -R www-data bootstrap/cache
+RUN chgrp -R www-data storage
+RUN chgrp -R www-data temp
 # RUN chmod 777 ca.pem
 
 # setup FE
@@ -91,19 +91,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN composer update --working-dir="/var/www/rib" && composer dump-autoload --working-dir="/var/www/rib"
 
-# RUN php artisan optimize && \
-# php artisan route:clear && \
-# php artisan route:cache && \
-# php artisan config:clear && \
-# php artisan config:cache && \
-# php artisan view:clear && \
-# php artisan view:cache
-
-# remove this line if you do not want to run migrations on each build
-# RUN php artisan migrate --force
 
 EXPOSE 80
 
-RUN ["chmod", "+x", "post_deploy.sh"]
+RUN ["chmod", "+x", "bin/post_deploy.sh"]
 
-CMD [ "sh", "./post_deploy.sh" ]
+CMD [ "sh", "./bin/post_deploy.sh" ]

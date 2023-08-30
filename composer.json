@@ -1,19 +1,60 @@
 {
     "name": "ronei-kunkel/rib",
-    "type": "project",
     "description": "Rib é um template para criação de projetos utilizando php 8.2 e nginx em um ambiente completamente dockerizado",
-    "require-dev": {
-        "pestphp/pest": "^1.23"
-    },
+    "keywords": ["php", "http", "psr-7", "psr-11", "psr-15", "app", "app-template", "project-template"],
+    "homepage": "https://github.com/ronei-kunkel/rib",
+    "type": "project",
+    "license": "MIT",
     "authors": [
         {
+            "name": "Evgeniy Zyubin",
+            "email": "mail@devanych.ru",
+            "homepage": "https://devanych.ru/",
+            "role": "Founder and lead developer"
+        },
+        {
             "name": "Ronei Kunkel",
-            "email": "ronei.kunkel@gmail.com"
+            "email": "ronei.kunkel@gmail.com",
+            "homepage": "https://github.com/ronei-kunkel",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/httpsoft/http-app/issues",
+        "source": "https://github.com/httpsoft/http-app",
+        "docs": "https://httpsoft.org/docs/app"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": true
+    },
+    "require": {
+        "php": "^8.2",
+        "devanych/di-container": "^2.1",
+        "httpsoft/http-basis": "^1.1",
+        "monolog/monolog": "^2.3|^3.3",
+        "php-amqplib/php-amqplib": "^3.5",
+        "predis/predis": "^2.2",
+        "robmorgan/phinx": "^0.13.4",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "filp/whoops": "^2.15",
+        "pestphp/pest": "^1.23",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^3.7",
+        "symfony/var-dumper": "^5.4|^6.2",
+        "vimeo/psalm": "^4.9|^5.2"
+    },
     "autoload": {
         "psr-4": {
-            "Rib\\": "src/"
+            "Rib\\": "src/",
+            "Module\\": "src/Application/Module/",
+            "Infra\\": "src/Infra/",
+            "Factory\\": "src/Infra/Factory/",
+            "Repository\\": "src/Infra/Reposifory/",
+            "Controller\\": "src/Infra/Http/Controller/",
+            "Middleware\\": "src/Infra/Http/Middleware/"
         }
     },
     "autoload-dev": {
@@ -22,14 +63,36 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "@chmod-temp"
+        ],
+        "post-update-cmd": [
+            "@chmod-temp"
+        ],
+        "test": "phpunit --colors=always",
+        "static": "psalm",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "check": [
+            "@cs-check",
+            "@static",
+            "@test"
+        ],
+        "chmod-temp": "php ./bin/chmod_temp.php",
         "bash": "docker exec -it $(docker ps -q -f name=rib_php82) bash",
         "tests": "docker container exec -it $(docker ps -q -f name=rib_php82) sh -c \"php vendor/bin/pest\" -d",
         "setup": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "composer update",
-            "composer dump-autoload",
             "docker-compose build",
-            "docker-compose up -d"
-        ]
+            "docker-compose up -d",
+            "docker exec -it $(docker ps -q -f name=rib_php82) bash -c \"composer copy-env\"",
+            "docker exec -it $(docker ps -q -f name=rib_php82) bash -c \"composer update\"",
+            "docker exec -it $(docker ps -q -f name=rib_php82) bash -c \"composer dump-autoload\"",
+            "docker exec -it $(docker ps -q -f name=rib_php82) bash -c \"composer sleep\"",
+            "composer migrate"
+        ],
+        "copy-env": "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+        "sleep": "@php -r \"sleep(2);\"",
+        "migrate": "docker container exec -it $(docker ps -q -f name=rib_php82) sh -c \"php vendor/bin/phinx migrate -e development\"",
+        "new-migration": "docker container exec -it $(docker ps -q -f name=rib_php82) sh -c \"php vendor/bin/phinx create\""
     }
 }

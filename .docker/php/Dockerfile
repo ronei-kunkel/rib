@@ -47,7 +47,7 @@ WORKDIR /var/www/rib
 
 RUN chgrp -R www-data storage
 
-RUN chgrp -R www-data bootstrap/cache
+# RUN chgrp -R www-data bootstrap/cache
 
 EXPOSE 9000
 EXPOSE 80
