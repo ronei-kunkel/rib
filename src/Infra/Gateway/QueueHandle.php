@@ -2,6 +2,6 @@
 
 namespace Infra\Gateway;
 
-interface Database
+interface QueueHandle
 {
 }

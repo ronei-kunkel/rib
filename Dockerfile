@@ -1,5 +1,9 @@
 FROM php:8.2-fpm
 
+# PHP 8.2-fpm
+# NGINX
+# REDIS
+
 # setup user as root
 USER root
 
@@ -40,6 +44,7 @@ RUN apt-get update \
     libpcre3-dev \
     libbz2-dev \
     libicu-dev \
+    redis-server \
   && apt-get autoclean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/pear/
@@ -64,11 +69,13 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install redis
 
 # Copy files
 COPY . /var/www/rib
 COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
+COPY ./.docker/redis/redis.conf/ /usr/local/etc/redis/redis.conf/
 
 # RUN chmod +rwx /var/www/rib
 
@@ -86,11 +93,13 @@ RUN chgrp -R www-data temp
 
 # RUN npm run prod
 
-# setup composer and laravel
+# setup composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN composer update --working-dir="/var/www/rib" && composer dump-autoload --working-dir="/var/www/rib"
 
+# etapa para deploy no render.com
+COPY /etc/secrets/.env .env
 
 EXPOSE 80
 

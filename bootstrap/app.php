@@ -14,10 +14,8 @@ use HttpSoft\ServerRequest\ServerRequestCreator;
 use Devanych\Di\Container;
 use Dotenv\Dotenv;
 
-$path = file_exists(__DIR__.'/etc/secrets/.env') ? __DIR__.'/etc/secrets/' : __DIR__.'/../';
-
-$dotenv = Dotenv::createImmutable($path);
-$dotenv->safeLoad();
+$dotenv = Dotenv::createImmutable(__DIR__.'/../');
+$dotenv->load();
 
 $appConfig['config'] = require_once __DIR__ . '/../config/app.php';
 $container           = require_once __DIR__ . '/../config/container.php';
