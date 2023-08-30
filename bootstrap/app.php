@@ -14,6 +14,11 @@ use HttpSoft\ServerRequest\ServerRequestCreator;
 use Devanych\Di\Container;
 use Dotenv\Dotenv;
 
+echo "<pre style='margin-left:260px;'>";
+print_r(scandir('/etc/secrets/'));
+echo "</pre>";
+exit;
+
 $dotenv = Dotenv::createImmutable([__DIR__.'/../', '/etc/secrets/']);
 $dotenv->load();
 
