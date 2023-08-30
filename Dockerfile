@@ -98,9 +98,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN composer update --working-dir="/var/www/rib" && composer dump-autoload --working-dir="/var/www/rib"
 
-# etapa para deploy no render.com
-COPY /etc/secrets/.env .env
-
 EXPOSE 80
 
 RUN ["chmod", "+x", "bin/post_deploy.sh"]
