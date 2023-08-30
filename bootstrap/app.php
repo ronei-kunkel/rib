@@ -14,11 +14,6 @@ use HttpSoft\ServerRequest\ServerRequestCreator;
 use Devanych\Di\Container;
 use Dotenv\Dotenv;
 
-echo "<pre style='margin-left:260px;'>";
-print_r(file_get_contents('/etc/secrets/.env'));
-echo "</pre>";
-exit;
-
 $path = file_exists(__DIR__.'/../.env') ? __DIR__.'/../' : file_exists('/etc/secrets/.env') ? '/etc/secrets/' : throw new Exception("Bad Configurations!");
 
 $dotenv = Dotenv::createImmutable($path);
