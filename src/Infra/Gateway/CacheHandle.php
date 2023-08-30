@@ -2,6 +2,6 @@
 
 namespace Infra\Gateway;
 
-interface Queue
+interface CacheHandle
 {
 }

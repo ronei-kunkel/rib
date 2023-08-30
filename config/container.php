@@ -38,7 +38,7 @@ return [
     ErrorHandlerMiddleware::class      => new ErrorHandlerMiddlewareFactory(),
     ResponseFactoryInterface::class    => new CustomResponseFactory(),
     LoggerInterface::class             => new LoggerFactory(),
-    Cache::class                       => fn (ContainerInterface $c) => new Client($c->get('cache')),
+    Cache::class                       => fn(ContainerInterface $c) => new Client($c->get('cache')),
     Database::class                    => fn(ContainerInterface $c) => new PDO($c->get('database')),
     Queue::class                       => fn(ContainerInterface $c) => new AMQPStreamConnection(...$c->get('queue'))
 

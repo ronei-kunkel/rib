@@ -64,10 +64,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@chmod-temp"
         ],
         "post-update-cmd": [
-            "@chmod-temp"
         ],
         "test": "phpunit --colors=always",
         "static": "psalm",
