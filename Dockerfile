@@ -54,7 +54,7 @@ RUN apt-get update \
 # RUN docker-php-ext-install opcache
 # RUN docker-php-ext-install apcu
 
-RUN pecl install redis
+RUN pecl install redis && docker-php-ext-enable redis
 
 RUN docker-php-ext-configure gd
 RUN docker-php-ext-install gd
