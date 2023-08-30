@@ -2,7 +2,6 @@ FROM php:8.2-fpm
 
 # PHP 8.2-fpm
 # NGINX
-# REDIS
 
 # setup user as root
 USER root
@@ -54,8 +53,6 @@ RUN apt-get update \
 # RUN docker-php-ext-install opcache
 # RUN docker-php-ext-install apcu
 
-RUN pecl install redis && docker-php-ext-enable redis
-
 RUN docker-php-ext-configure gd
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install gmp
@@ -70,13 +67,11 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install zip
-RUN docker-php-ext-install redis
 
 # Copy files
 COPY . /var/www/rib
 COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
-# COPY ./.docker/redis/ /usr/local/etc/redis/redis.conf/
 
 # RUN chmod +rwx /var/www/rib
 
