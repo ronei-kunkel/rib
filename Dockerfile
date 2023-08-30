@@ -75,7 +75,7 @@ RUN docker-php-ext-install redis
 COPY . /var/www/rib
 COPY ./.docker/php/prod.ini /usr/local/etc/php/local.ini
 COPY ./.docker/nginx/prod.conf /etc/nginx/nginx.conf
-COPY ./.docker/redis/redis.conf/ /usr/local/etc/redis/redis.conf/
+COPY ./.docker/redis/ /usr/local/etc/redis/redis.conf/
 
 # RUN chmod +rwx /var/www/rib
 
