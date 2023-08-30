@@ -1,8 +1,8 @@
 {
-    "name": "ronei-kunkel/rib-http-app",
-    "description": "HTTP Software Application Template",
+    "name": "ronei-kunkel/rib",
+    "description": "Rib é um template para criação de projetos utilizando php 8.2 e nginx em um ambiente completamente dockerizado",
     "keywords": ["php", "http", "psr-7", "psr-11", "psr-15", "app", "app-template", "project-template"],
-    "homepage": "https://httpsoft.org/",
+    "homepage": "https://github.com/ronei-kunkel/rib",
     "type": "project",
     "license": "MIT",
     "authors": [
