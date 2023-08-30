@@ -15,7 +15,7 @@ use Devanych\Di\Container;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__.'/../');
-$dotenv->load();
+$dotenv->safeLoad();
 
 $appConfig['config'] = require_once __DIR__ . '/../config/app.php';
 $container           = require_once __DIR__ . '/../config/container.php';
